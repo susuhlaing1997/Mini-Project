@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+           
+        }
+
+        .dark{
+            background-color: black;
+            color:white;
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="container">
+        <div class="">
+            <h1> Everything is working out for my highest good</h1>
+            <h2>Light Mode</h2>
+            <button>OFF</button>
+    
+
+        </div>
+        
+    </div>
+    
+</body>
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+           
+            if($("body").hasClass("dark")){
+                $("body").removeClass("dark");
+                $("button").html("ON");
+                $("h1").html("WELCOME FROM LIGHT MODE");
+            }else{
+                
+            $("body").addClass("dark");
+            $("button").html("OFF")
+            $("h1").html("WELCOME FROM DARK MODE");
+
+            }
+
+        })
+
+    })
+</script>
+
+</html>

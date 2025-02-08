@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table{
+            width:90%;
+           border:1px solid black;
+            border-collapse:collapse;
+        } 
+
+        th,td{
+            width:50px;
+            height:30px;
+            border:1px solid black;
+           
+        }
+        th{
+            background-color:rgb(86, 244, 86);
+        }
+        tr:hover{
+            background-color: yellow;
+        }
+       .contentSearch{
+        display:flex;
+        justify-content: center;
+        
+       }
+       .searchBox{
+        width:200px;
+        padding:15px 10px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        border-radius: 15px;
+       }
+        
+    </style>  
+</head>
+<body>
+    <div class="contentSearch">
+        <input type="text" class="searchBox" id="searchKey" placeholder="Enter your search...." onkeyup="searchProcess()">
+       
+    </div>
+
+    <table id="productTable">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description </th>
+            <th>Photo </th>
+        </tr>
+        
+        
+    </table>
+    
+</body>
+<script>
+    
+
+     try{  
+         let temp="";
+            fetch("https://fakestoreapi.com/products")
+        .then((res)=> res.json() )
+        .then((prod)=>{
+            console.log(prod)
+
+            prod.forEach(item=>{
+                temp+=`
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.title}</td>
+                    <td>${item.description}</td>
+                    <td><img src="${item.image}" width="50px"></td>
+                </tr>
+                `
+            })
+           document.getElementById("productTable").innerHTML=` <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description </th>
+            <th>Photo </th>
+        </tr>
+        `+temp;
+        })
+    } catch(e){
+        console.log("error is =>"+e) 
+    }
+
+    function searchProcess(){
+        let input=document.getElementById("searchKey");
+        let filter=input.value.toUpperCase();
+
+        let table=document.getElementById("productTable");
+        let tr=table.getElementsByTagName("tr");
+        let txtValue;
+        var txtUpper;
+       for(let i=0;i<tr.length;i++){
+       var td=tr[i].getElementsByTagName("td")[1];
+        
+       if(td){
+
+        txtValue=td.innerText.toUpperCase();
+      //  txtUpper=txtValue.toUpperCase();
+      // console.log(txtUpper)
+       }
+       if( txtValue && txtValue.indexOf(filter)>-1)// true 0,1|| false -1
+       {// search value can found condition
+        tr[i].style.display=""
+       }else{
+        // search value cannot found condition 
+        tr[i].style.display="none"
+       }
+       
+       }
+    }
+    
+
+</script>
+</html>
