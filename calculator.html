@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./calculator.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <form action ="">
+
+                <div class="display">
+                    <input type="text" name="display" id="result" value="0">
+                </div>
+                <div>
+                    <input type="button" onclick="clearForm()" value="AC">
+                    <input type="button" onclick="DeleteOne()" value="DE" >
+                    <input onclick="showThis(this)" type="button" value=".">
+                    <input onclick="showThis(this)" type="button" value="/">
+                </div>
+                <div>
+                    <input onclick="showThis(this)" type="button" value="7">
+                    <input onclick="showThis(this)" type="button" value="8">
+                    <input onclick="showThis(this)" type="button" value="9">
+                    <input onclick="showThis(this)" type="button" value="*">
+                </div>
+                <div>
+                    <input onclick="showThis(this)" type="button" value="4">
+                    <input onclick="showThis(this)" type="button" value="5">
+                    <input onclick="showThis(this)" type="button" value="6">
+                    <input onclick="showThis(this)" type="button" value="+">
+                </div>
+                <div>
+                    <input onclick="showThis(this)" type="button" value="1">
+                    <input onclick="showThis(this)" type="button" value="2">
+                    <input onclick="showThis(this)" type="button" value="3">
+                    <input onclick="showThis(this)" type="button" value="-">
+                </div>
+                <div>
+                    <input onclick="showThis(this)" type="button" value="00">
+                    <input onclick="showThis(this)"type="button" value="0">
+                    <input onclick="showThis(this)" type="button" value="=" id="equal">
+                   
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</body>
+<script>
+    let result=document.getElementById("result")
+    let temp=""
+function showThis(data){
+    let input=data.value;
+    
+
+    if (input== "="){
+        //calculation
+
+        result.value=eval(temp);
+        temp=eval(temp)
+    }else{
+        temp +=input
+       result.value=temp;
+    }
+}
+
+    function clearForm(){
+        result.value=0
+        temp=""
+    }
+
+    function DeleteOne(){
+        result.value=result.value.toString().slice(0,-1)
+        temp=result.value
+        if(result.value==''){
+            result.value=0;
+            temp=result.value
+        }
+    }
+
+</script>
+</html>
